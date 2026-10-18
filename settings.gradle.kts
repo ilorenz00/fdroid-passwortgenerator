@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "fdroid-com-lorenzl5-hermes-passwort"
+rootProject.name = "fdroid-passwort"
 include(":app")

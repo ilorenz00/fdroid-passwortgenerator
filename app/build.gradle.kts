@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.lorenzl5.hermes.comlorenzl5hermespasswort"
+    namespace = "com.lorenzl5.hermes.passwort"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.lorenzl5.hermes.comlorenzl5hermespasswort"
+        applicationId = "com.lorenzl5.hermes.passwort"
         minSdk = 26
         targetSdk = 34
         // Die CI (release-apk.yml) setzt versionCode = Lauf-Nummer; F-Droid entscheidet Updates nur danach.
