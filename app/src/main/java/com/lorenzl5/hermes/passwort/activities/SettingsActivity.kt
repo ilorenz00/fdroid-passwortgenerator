@@ -10,26 +10,12 @@ import com.lorenzl5.hermes.passwort.database.MetaDataSQLiteHelper
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(
-            androidx.preference.PreferenceFragmentCompat::class.java
-                .let {
-                    // Simple layout with fragment container
-                    android.R.layout.simple_list_item_1
-                }
-        )
-        // Use a FrameLayout container
-        val frameLayout = android.widget.FrameLayout(this)
-        frameLayout.layoutParams = android.widget.FrameLayout.LayoutParams(
-            android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-            android.view.ViewGroup.LayoutParams.MATCH_PARENT
-        )
-        setContentView(frameLayout)
+        setContentView(R.layout.activity_settings)
+        supportActionBar?.title = getString(R.string.settings_title)
 
         supportFragmentManager.beginTransaction()
-            .replace(frameLayout.id, SettingsFragment())
+            .replace(R.id.settings_container, SettingsFragment())
             .commit()
-
-        supportActionBar?.title = getString(R.string.settings_title)
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
