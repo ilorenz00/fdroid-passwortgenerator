@@ -22,7 +22,7 @@ class PasswordGenerator(
     init {
         // PBKDF2-HMAC-SHA256: key=masterPassword, password=salt, iterations=hashIterations
         // salt = (iteration*100 + domain + username + deviceId) as UTF-8
-        val salt = (iteration * 100 + domain + username + deviceId).toByteArray(Charset.forName("UTF-8"))
+        val salt = ((iteration * 100).toString() + domain + username + deviceId).toByteArray(Charset.forName("UTF-8"))
         val keySpec = PBEKeySpec(
             masterPassword.toCharArray(),
             salt,

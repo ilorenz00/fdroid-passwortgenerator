@@ -28,15 +28,7 @@ class TutorialActivity : AppCompatActivity() {
         setContentView(R.layout.activity_tutorial)
         supportActionBar?.hide()
 
-        val viewPager = findViewById<ViewPager>(R.id.view_pager)
-        viewPager.adapter = SlideAdapter()
-
-        // The slide layout contains its own nav buttons; wire them up via the adapter's views
-        viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-            }
-        })
+        findViewById<ViewPager>(R.id.view_pager).adapter = SlideAdapter()
     }
 
     private fun finishTutorial() {
@@ -85,13 +77,7 @@ class TutorialActivity : AppCompatActivity() {
                 btnNext.setOnClickListener { finishTutorial() }
             } else {
                 btnNext.setText(R.string.next)
-                btnNext.setOnClickListener { viewPager.currentItem = position + 1 }
-            }
-            // Wire btnNext via viewPager ref (capture)
-            btnNext.setOnClickListener {
-                if (position == titles.size - 1) finishTutorial()
-                else {
-                    // Find the viewPager
+                btnNext.setOnClickListener {
                     var v: View? = view
                     while (v != null && v !is ViewPager) { v = (v.parent as? View) }
                     (v as? ViewPager)?.currentItem = position + 1

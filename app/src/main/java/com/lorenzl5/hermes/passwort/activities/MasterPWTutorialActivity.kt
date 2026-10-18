@@ -27,8 +27,7 @@ class MasterPWTutorialActivity : AppCompatActivity() {
         setContentView(R.layout.activity_tutorial)
         supportActionBar?.hide()
 
-        val viewPager = findViewById<ViewPager>(R.id.view_pager)
-        viewPager.adapter = SlideAdapter()
+        findViewById<ViewPager>(R.id.view_pager).adapter = SlideAdapter()
     }
 
     private fun finishTutorial() {
