@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
@@ -43,10 +42,10 @@ class GeneratePasswordDialog(
         val version = view.findViewById<TextView>(R.id.dialog_version)
         val masterPasswordField = view.findViewById<EditText>(R.id.editText_masterpassword)
         val passwordText = view.findViewById<TextView>(R.id.textPassword)
-        val copyButton = view.findViewById<ImageButton>(R.id.btn_copy)
+        val copyButton = view.findViewById<TextView>(R.id.btn_copy)
         val generateButton = view.findViewById<Button>(R.id.btn_generate)
         val doneButton = view.findViewById<Button>(R.id.btn_done)
-        val visibilityButton = view.findViewById<ImageButton>(R.id.btn_visibility)
+        val visibilityButton = view.findViewById<TextView>(R.id.btn_visibility)
 
         accountName.text = meta.domain
         if (meta.username.isEmpty()) {
