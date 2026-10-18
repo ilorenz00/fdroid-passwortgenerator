@@ -77,7 +77,7 @@
             android:id="@+id/btn_visibility"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/eye"
+            android:src="@android:drawable/ic_menu_view"
             android:contentDescription="Toggle visibility" />
     </LinearLayout>
 

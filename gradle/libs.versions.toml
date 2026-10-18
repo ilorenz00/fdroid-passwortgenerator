@@ -18,3 +18,11 @@ androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview"
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+cardview = "1.0.0"
+preference = "1.2.1"
+jbcrypt = "0.4"
+
+[libraries]
+androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
+androidx-preference = { group = "androidx.preference", name = "preference-ktx", version.ref = "preference" }
+jbcrypt = { group = "org.mindrot", name = "jbcrypt", version.ref = "jbcrypt" }
