@@ -74,14 +74,6 @@
             android:textColor="@color/colorCardSubtext" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/your_password_label"
-            android:textSize="14sp"
-            android:textColor="@color/colorCardSubtext" />
-
-        <TextView
             android:id="@+id/btn_visibility"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,6 +124,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginTop="8dp"
-        android:text="@string/done"
+        android:text="@string/close"
         android:textColor="@color/colorPrimary" />
 </LinearLayout>

@@ -23,6 +23,7 @@
     <string name="your_password_label">Dein Passwort:</string>
     <string name="generate">GENERIEREN</string>
     <string name="done">FERTIG</string>
+    <string name="close">Schließen</string>
     <string name="cancel">ABBRECHEN</string>
     <string name="add">HINZUFÜGEN</string>
     <string name="save">SPEICHERN</string>
