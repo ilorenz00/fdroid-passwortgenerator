@@ -12,10 +12,14 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         // Redirect: first launch -> Tutorial, second -> MasterPWTutorial, else Main
-        val intent = when {
-            !PreferenceKeys.isTutorialDone(this) -> Intent(this, TutorialActivity::class.java)
-            !PreferenceKeys.isMasterpwTutorialDone(this) -> Intent(this, MasterPWTutorialActivity::class.java)
-            else -> Intent(this, MainActivity::class.java)
+        val intent = if (!PreferenceKeys.isMasterpwTutorialDone(this)) {
+            if (PreferenceKeys.isTutorialDone(this)) {
+                Intent(this, MasterPWTutorialActivity::class.java)
+            } else {
+                Intent(this, TutorialActivity::class.java)
+            }
+        } else {
+            Intent(this, MainActivity::class.java)
         }
         startActivity(intent)
         finish()
