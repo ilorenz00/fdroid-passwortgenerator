@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreferenceCompat
+        app:key="bind_to_device_enabled"
+        app:title="@string/settings_bind_title"
+        app:summary="@string/settings_bind_summary"
+        app:defaultValue="false" />
+
+    <SwitchPreferenceCompat
+        app:key="clipboard_enabled"
+        app:title="@string/settings_clipboard_title"
+        app:summary="@string/settings_clipboard_summary"
+        app:defaultValue="true" />
+
+    <Preference
+        app:key="delete_all"
+        app:title="@string/settings_delete_all_title" />
+
+    <SwitchPreferenceCompat
+        app:key="expert_mode"
+        app:title="@string/settings_expert_title"
+        app:defaultValue="false" />
+
+    <EditTextPreference
+        app:key="bcrypt_cost"
+        app:title="@string/settings_bcrypt_title"
+        app:summary="@string/settings_bcrypt_summary"
+        app:defaultValue="10"
+        app:dependency="expert_mode" />
+</androidx.preference.PreferenceScreen>
