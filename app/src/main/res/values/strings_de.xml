@@ -1,3 +1,3 @@
 <resources>
-    <string name="app_name">Password Generator</string>
+    <!-- Deutsche Uebersetzungen; die englischen Strings in strings.xml gelten als Fallback. -->
 </resources>
