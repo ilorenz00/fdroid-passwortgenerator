@@ -68,7 +68,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         db = MetaDataSQLiteHelper(this)
-        loadAccounts()
 
         val recyclerView = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -86,6 +85,8 @@ class MainActivity : AppCompatActivity() {
         val swipeLayout = SwipeLayout(recyclerView)
         recyclerView.addOnItemTouchListener(swipeLayout)
         swipeLayout.onSwipeDelete = { meta -> deleteAccount(meta) }
+
+        loadAccounts()
 
         val fab = findViewById<FloatingActionButton>(R.id.add_fab)
         fab.setOnClickListener {
