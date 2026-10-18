@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="32dp"
-        android:text="Generating password…"
+        android:text="@string/generating_password"
         android:textSize="16sp" />
 
     <ProgressBar

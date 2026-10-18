@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "fdroid-passwort"
+rootProject.name = "fdroid-passwortgenerator"
 include(":app")

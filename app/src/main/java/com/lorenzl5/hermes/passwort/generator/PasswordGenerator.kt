@@ -1,8 +1,8 @@
 package com.lorenzl5.hermes.passwort.generator
 
+import android.util.Base64
 import java.math.BigInteger
 import java.nio.charset.Charset
-import java.security.spec.KeySpec
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 import org.mindrot.jbcrypt.BCrypt
@@ -22,8 +22,7 @@ class PasswordGenerator(
     init {
         // PBKDF2-HMAC-SHA256: key=masterPassword, password=salt, iterations=hashIterations
         // salt = (iteration*100 + domain + username + deviceId) as UTF-8
-        val saltStr = "${iteration * 100}$domain$username$deviceId"
-        val salt = saltStr.toByteArray(Charset.forName("UTF-8"))
+        val salt = (iteration * 100 + domain + username + deviceId).toByteArray(Charset.forName("UTF-8"))
         val keySpec = PBEKeySpec(
             masterPassword.toCharArray(),
             salt,
@@ -32,9 +31,9 @@ class PasswordGenerator(
         )
         val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
         val keyBytes = factory.generateSecret(keySpec).encoded
-        val base64Salt = org.mindrot.jbcrypt.Base64.encodeToString(keyBytes, org.mindrot.jbcrypt.Base64.NO_WRAP)
+        val base64Salt = Base64.encodeToString(keyBytes, Base64.NO_WRAP)
         // BCrypt: $2a$<bcryptCost>$<base64Salt>
-        val bcryptHash = BCrypt.hashpw(masterPassword, "\$2a\$$bcryptCost\$$base64Salt")
+        val bcryptHash = BCrypt.hashpw(masterPassword, "\$2a\$${bcryptCost}\$$base64Salt")
         // transformPassword: take last 31 bytes of UTF-8 encoding, drop first byte
         val utf8 = bcryptHash.toByteArray(Charset.forName("UTF-8"))
         hashValue = ByteArray(31)
@@ -59,7 +58,7 @@ class PasswordGenerator(
         var bigInt = BigInteger(signed)
 
         // Character pools
-        val specialPool = "#!\"~|@^°$%&/()[]{}=-_+*<>;:".map { it.toString() }.toMutableList()
+        val specialPool = "#!\"~|@^°$%&/()[]{}=-_+*<>;.\"".map { it.toString() }.toMutableList()
         val lowerPool = "abcdefghijklmnopqrstuvwxyz".map { it.toString() }.toMutableList()
         val upperPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".map { it.toString() }.toMutableList()
         val numberPool = "0123456789".map { it.toString() }.toMutableList()
@@ -118,7 +117,8 @@ class PasswordGenerator(
         for (b in hashValue) seed = seed * 31 + b
         var state = seed
         for (i in chars.indices.reversed()) {
-            state = state xor 0x5bd1e995.toInt()
+            state = state xor 0x5bd1e995
+            state = state * 1
             val j = Math.abs(state % (i + 1))
             val tmp = chars[i]
             chars[i] = chars[j]

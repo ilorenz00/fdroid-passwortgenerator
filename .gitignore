@@ -1,8 +1,12 @@
-*.iml
-.gradle/
+# Gradle
 build/
-/local.properties
-/.idea/
-*.apk
-*.jks
-*.keystore
+.gradle/
+local.properties
+
+# Ignore scaffold .kts files (we use .gradle)
+*.kts
+!gradle/libs.versions.toml
+
+# IDE
+.idea/
+*.iml

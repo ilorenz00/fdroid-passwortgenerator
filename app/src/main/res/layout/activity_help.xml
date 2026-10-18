@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1. What is the app doing?"
+            android:text="@string/help_faq_1_q"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="8dp" />
@@ -29,13 +29,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The app generates passwords for your accounts based on a master password. It does not store your master password or the generated passwords."
+            android:text="@string/help_faq_1_a"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="2. What if the app asks me to generate a new password after an update?"
+            android:text="@string/help_faq_2_q"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
@@ -43,13 +43,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="If the app updates and you are asked to generate a new password, it means that a change in the password generation algorithm requires it. You should accept and use the new password."
+            android:text="@string/help_faq_2_a"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="3. Do you save my master password?"
+            android:text="@string/help_faq_3_q"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
@@ -57,13 +57,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No! We do not save your master password."
+            android:text="@string/help_faq_3_a"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4. What if I loose my master password?"
+            android:text="@string/help_faq_4_q"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
@@ -71,13 +71,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="If you loose your master password you have to reset all your passwords. This is not recoverable."
+            android:text="@string/help_faq_4_a"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="5. How does the app handle my master password?"
+            android:text="@string/help_faq_5_q"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
@@ -85,13 +85,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your master password is used to generate a hash which is then used to generate the actual password. The master password is never stored."
+            android:text="@string/help_faq_5_a"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="6. Do you store my passwords in the cloud or somewhere?"
+            android:text="@string/help_faq_6_q"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
@@ -99,13 +99,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No. All passwords are generated and stored locally on your device."
+            android:text="@string/help_faq_6_a"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="7. How does the app handle my data?"
+            android:text="@string/help_faq_7_q"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
@@ -113,13 +113,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your data is stored locally in a SQLite database on your device. It is not transmitted to any server."
+            android:text="@string/help_faq_7_a"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="8. How do I delete all my accounts?"
+            android:text="@string/help_faq_8_q"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
@@ -127,13 +127,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Go to Settings and select 'Delete all accounts'."
+            android:text="@string/help_faq_8_a"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="9. What is the version number for?"
+            android:text="@string/help_faq_9_q"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
@@ -141,13 +141,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The version number allows you to change the password for a specific account without changing all others. Increase the version to generate a new password for that account."
+            android:text="@string/help_faq_9_a"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="10. Where can I get support?"
+            android:text="@string/help_faq_10_q"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
@@ -155,7 +155,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Please file an issue on the GitHub repository or contact the author directly."
+            android:text="@string/help_faq_10_a"
             android:textSize="16sp" />
     </LinearLayout>
 </ScrollView>

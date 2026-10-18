@@ -1,6 +1,5 @@
 package com.lorenzl5.hermes.passwort.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,21 +23,26 @@ class TutorialActivity : AppCompatActivity() {
         R.string.tutorial_slide_3_body
     )
 
-    private lateinit var viewPager: ViewPager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
         supportActionBar?.hide()
 
-        viewPager = findViewById(R.id.view_pager)
+        val viewPager = findViewById<ViewPager>(R.id.view_pager)
         viewPager.adapter = SlideAdapter()
+
+        // The slide layout contains its own nav buttons; wire them up via the adapter's views
+        viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            }
+        })
     }
 
     private fun finishTutorial() {
         PreferenceKeys.setTutorialDone(this, true)
         PreferenceKeys.setMasterpwTutorialDone(this, false)
-        startActivity(Intent(this, MasterPWTutorialActivity::class.java))
+        startActivity(android.content.Intent(this, MasterPWTutorialActivity::class.java))
         finish()
     }
 
@@ -73,7 +77,7 @@ class TutorialActivity : AppCompatActivity() {
             // Buttons
             val btnSkip = view.findViewById<android.widget.Button>(R.id.btn_skip)
             val btnNext = view.findViewById<android.widget.Button>(R.id.btn_next)
-            btnSkip.visibility = View.VISIBLE
+            btnSkip.visibility = android.view.View.VISIBLE
             btnSkip.setOnClickListener { finishTutorial() }
 
             if (position == titles.size - 1) {
@@ -83,7 +87,16 @@ class TutorialActivity : AppCompatActivity() {
                 btnNext.setText(R.string.next)
                 btnNext.setOnClickListener { viewPager.currentItem = position + 1 }
             }
-
+            // Wire btnNext via viewPager ref (capture)
+            btnNext.setOnClickListener {
+                if (position == titles.size - 1) finishTutorial()
+                else {
+                    // Find the viewPager
+                    var v: View? = view
+                    while (v != null && v !is ViewPager) { v = (v.parent as? View) }
+                    (v as? ViewPager)?.currentItem = position + 1
+                }
+            }
             container.addView(view)
             return view
         }

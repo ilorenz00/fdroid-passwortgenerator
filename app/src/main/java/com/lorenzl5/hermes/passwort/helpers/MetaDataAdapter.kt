@@ -36,11 +36,12 @@ class MetaDataAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
+        val context = holder.itemView.context
         holder.domain.text = item.domain
-        holder.username.text = "Username: ${item.username}"
-        holder.charset.text = "Character set: ${item.characterSetDescription()}"
-        holder.length.text = "Length: ${item.length}"
-        holder.version.text = "Version: ${item.iteration}"
+        holder.username.text = context.getString(R.string.username_label) + " " + item.username
+        holder.charset.text = context.getString(R.string.character_set_label) + " " + item.characterSetDescription()
+        holder.length.text = context.getString(R.string.length_label) + " " + item.length
+        holder.version.text = context.getString(R.string.version_label) + " " + item.iteration
 
         holder.itemView.setOnClickListener { onClick(item) }
         holder.itemView.setOnLongClickListener {
