@@ -1,0 +1,75 @@
+# Builds a signed release APK and publishes it as a GitHub Release.
+# The central F-Droid repo (ilorenz00/fdroid-lorenzl5) collects the latest
+# release of every app repo; phones subscribe once to
+#   https://fdroid.lorenzl5.com/repo   (home network / Tailscale only)
+# APK file name and release title come from the repository name, so apps
+# never collide in the central repo.
+#
+# Required repository secrets (set by fdroid.py app-einrichten):
+#   SIGNING_KEYSTORE_B64, SIGNING_STORE_PASSWORD, SIGNING_KEY_ALIAS,
+#   SIGNING_KEY_PASSWORD, DISPATCH_TOKEN (instant central rebuild)
+name: release-apk
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: release-apk
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # gh release create
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    env:
+      APP: ${{ github.event.repository.name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.7"
+
+      - name: Decode signing keystore
+        run: echo "${{ secrets.SIGNING_KEYSTORE_B64 }}" | tr -d '\r\n ' | base64 -d > "$RUNNER_TEMP/release.jks"
+
+      - name: Build signed release APK
+        env:
+          SIGNING_KEYSTORE: ${{ runner.temp }}/release.jks
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          VERSION_CODE: ${{ github.run_number }}
+          VERSION_NAME: 0.1.${{ github.run_number }}
+        run: gradle assembleRelease --no-daemon --stacktrace
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cp app/build/outputs/apk/release/app-release.apk "${APP}_${{ github.run_number }}.apk"
+          gh release create "v0.1.${{ github.run_number }}" "${APP}_${{ github.run_number }}.apk" \
+            --title "${APP} 0.1.${{ github.run_number }}" \
+            --notes "Automated release (run ${{ github.run_number }}, ${{ github.sha }})" \
+            --latest
+
+      - name: Trigger central F-Droid repo rebuild
+        env:
+          DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$DISPATCH_TOKEN" ]; then
+            echo "no DISPATCH_TOKEN - central repo rebuilds on its 30-min schedule"; exit 0
+          fi
+          curl -sf -X POST -H "Authorization: Bearer $DISPATCH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/ilorenz00/fdroid-lorenzl5/dispatches \
+            -d '{"event_type":"app-updated"}'
