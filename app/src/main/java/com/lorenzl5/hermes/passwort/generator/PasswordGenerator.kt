@@ -6,7 +6,6 @@ import java.security.spec.KeySpec
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 import org.mindrot.jbcrypt.BCrypt
-import org.mindrot.jbcrypt.Base64
 
 class PasswordGenerator(
     domain: String,
@@ -32,7 +31,7 @@ class PasswordGenerator(
         )
         val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
         val keyBytes = factory.generateSecret(keySpec).encoded
-        val base64Salt = Base64.encodeToString(keyBytes, Base64.NO_WRAP)
+        val base64Salt = org.mindrot.jbcrypt.Base64.encodeToString(keyBytes, org.mindrot.jbcrypt.Base64.NO_WRAP)
         // BCrypt: $2a$<bcryptCost>$<base64Salt>
         val bcryptHash = BCrypt.hashpw(masterPassword, "\$2a\$${bcryptCost}\$$base64Salt")
         // transformPassword: take last 31 bytes of UTF-8 encoding, drop first byte
