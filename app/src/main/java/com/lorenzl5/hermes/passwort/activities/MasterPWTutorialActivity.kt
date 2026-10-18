@@ -32,6 +32,7 @@ class MasterPWTutorialActivity : AppCompatActivity() {
 
     private fun finishTutorial() {
         PreferenceKeys.setMasterpwTutorialDone(this, true)
+        PreferenceKeys.setTutorialDone(this, true)
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
