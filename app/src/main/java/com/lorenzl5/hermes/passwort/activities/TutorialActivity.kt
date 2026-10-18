@@ -32,8 +32,9 @@ class TutorialActivity : AppCompatActivity() {
     }
 
     private fun finishTutorial() {
+        // Mark the welcome tutorial as done, but keep the main tutorial
+        // re-openable from the navigation drawer without resetting the flag.
         PreferenceKeys.setTutorialDone(this, true)
-        PreferenceKeys.setMasterpwTutorialDone(this, false)
         startActivity(android.content.Intent(this, MasterPWTutorialActivity::class.java))
         finish()
     }
