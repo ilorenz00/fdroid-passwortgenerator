@@ -73,11 +73,23 @@
             android:textSize="14sp"
             android:textColor="@color/colorCardSubtext" />
 
-        <ImageView
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/your_password_label"
+            android:textSize="14sp"
+            android:textColor="@color/colorCardSubtext" />
+
+        <TextView
             android:id="@+id/btn_visibility"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/eye"
+            android:text="👁"
+            android:textSize="20sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
             android:contentDescription="Toggle visibility" />
     </LinearLayout>
 
@@ -99,7 +111,7 @@
             android:id="@+id/btn_copy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_set_as"
+            android:src="@android:drawable/ic_menu_edit"
             android:background="?android:attr/selectableItemBackground"
             android:contentDescription="Copy to clipboard" />
     </LinearLayout>
