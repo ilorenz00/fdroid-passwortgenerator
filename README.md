@@ -1,0 +1,2 @@
+# fdroid-passwortgenerator
+Clean-room reimplementation of PrivacyFriendlyPasswordGenerator
